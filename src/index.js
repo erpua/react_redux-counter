@@ -24,6 +24,8 @@ store.dispatch(myAction2); */
 // application and, throuth context, passes additional
 //functionality
 
+console.log('store.getState(): ', store.getState());
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

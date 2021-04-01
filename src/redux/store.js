@@ -91,7 +91,7 @@ export default store; */
 
 import { createStore } from 'redux';
 
-const initialState = { counterValue: 0 };
+const initialState = { counterValue: 10 };
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {

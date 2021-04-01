@@ -162,23 +162,38 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Controls from './Controls';
 import Value from './Value';
+import * as actions from '../../redux/actions';
 import './Counter.css';
 
-function Counter() {
+function Counter({ value, onIncrement, onDecrement }) {
   return (
     <div className="Counter">
       <Value value={value} />
-
-      <Controls
-        onIncrement={this.handleIncrement}
-        onDecrement={this.handleDecrement}
-      />
+      <Controls onIncrement={onIncrement} onDecrement={onDecrement} />
+      Counter
     </div>
   );
 }
 
+/* to map redux's state into componentes props */
+/* that is the first argument en connect(mapStateToProps) */
+const mapStateToProps = state => {
+  return {
+    value: state.counterValue,
+  };
+};
+
+//mapDispatchToProps => sends action
+//second argument in connect()
+const mapDispatchToProps = dispatch => {
+  return {
+    onIncrement: () => dispatch(actions.increment(5)),
+    onDecrement: () => dispatch(actions.decrement(5)),
+  };
+};
+
 //connect => method, that connects React Component with REDUX
-export default connect()(Counter);
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 
 //  const a = x => y => x + y;
 // OR

@@ -27,7 +27,7 @@ BASE
 - import React from 'react' in App.js and each component file
 - npm start
 
-ADDITIONAL
+Topic's additional set up
 
 - npm install --save-dev redux
 - npm install --save-dev react-redux ( to contact our react component with redux
