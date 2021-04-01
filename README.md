@@ -27,9 +27,13 @@ BASE
 - import React from 'react' in App.js and each component file
 - npm start
 
-REACT REDUX
+ADDITIONAL
 
-- npm install --save-dev react-router-dom
+- npm install --save-dev redux
+- npm install --save-dev react-redux ( to contact our react component with redux
+  library ). Has <Provider /> component, that wraps ALL our application and,
+  throuth context, passes additional functionality ( <React.StrictMode>
+  <Provider store={store}> <App /> </Provider> </React.StrictMode>)
 - git add . / commit / push
 
 ---
