@@ -89,20 +89,67 @@ export default store; */
 
 /* ----------------- */
 
-import { createStore } from 'redux';
+// import { createStore } from 'redux';
 
-const initialState = { counterValue: 10 };
+// const initialState = { counterValue: 10 };
+
+// const reducer = (state = initialState, { type, payload }) => {
+//   switch (type) {
+//     case 'counter/Increment':
+//       return {
+//         counterValue: state.counterValue + payload,
+//       };
+
+//     case 'counter/Decrement':
+//       return {
+//         counterValue: state.counterValue - payload,
+//       };
+
+//     default:
+//       return state;
+//   }
+// };
+
+// const store = createStore(reducer);
+
+// export default store;
+
+/* -------------------------- */
+
+/* import { createStore } from 'redux';
+
+const initialState = {
+  counter: {
+    value: 10,
+    step: 15,
+  },
+  user: {},
+  todos: {},
+};
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case 'counter/Increment':
       return {
-        counterValue: state.counterValue + payload,
+        ...state, //to spread previous => const initialState = {
+        //   counter: { value: 10 },
+        //   user: {},
+        //   todos: {},
+        // };
+        //then to work with what we need
+        counter: {
+          ...state.counter, //to spread all counter to save step and others
+          value: state.counter.value + payload, //to update value
+        },
       };
 
     case 'counter/Decrement':
       return {
-        counterValue: state.counterValue - payload,
+        ...state,
+        counter: {
+          ...state.counter,
+          value: state.counter.value - payload,
+        },
       };
 
     default:
@@ -111,5 +158,108 @@ const reducer = (state = initialState, { type, payload }) => {
 };
 
 const store = createStore(reducer);
+
+export default store; */
+
+/* -------------------- */
+
+/* import { createStore, combineReducers } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+const initialState = {
+  counter: {
+    value: 10,
+    step: 15,
+  },
+  user: {},
+  todos: {},
+};
+
+const counterInitialState = {
+  value: 10,
+  step: 15,
+};
+
+const counterReducer = (state = counterInitialState, { type, payload }) => {
+  switch (type) {
+    case 'counter/Increment':
+      return {
+        ...state,
+        value: state.value + payload,
+      };
+
+    case 'counter/Decrement':
+      return {
+        ...state,
+        value: state.value - payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({
+  counter: counterReducer,
+});
+
+// reducer composition
+const store = createStore(rootReducer, composeWithDevTools());
+
+export default store; */
+
+/* ------------------- */
+
+// import { createStore, combineReducers } from 'redux';
+// import { composeWithDevTools } from 'redux-devtools-extension';
+
+// const valueReducer = (state = 10, { type, payload }) => {
+//   switch (type) {
+//     case 'counter/Increment':
+//       return state + payload;
+
+//     case 'counter/Decrement':
+//       return state - payload;
+
+//     default:
+//       return state;
+//   }
+// };
+
+// const stepReducer = (state = 5, action) => state;
+
+// const counterReducer = combineReducers({
+//   value: valueReducer,
+//   step: stepReducer,
+// });
+
+// const rootReducer = combineReducers({
+//   counter: counterReducer,
+// });
+
+// const store = createStore(rootReducer, composeWithDevTools());
+
+// export default store;
+
+// /* {
+//    counter: //for counter reports counterReducer
+//   {
+//   value: 5, //for value reports valueReducer
+//   step: 10, // for step reports stepReducer
+// }
+// }
+//  */
+
+/* ------------------- */
+
+import { createStore, combineReducers } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import counterReducer from './counter/counter-reducer';
+
+const rootReducer = combineReducers({
+  counter: counterReducer,
+});
+
+const store = createStore(rootReducer, composeWithDevTools());
 
 export default store;

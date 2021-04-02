@@ -34,6 +34,13 @@ Topic's additional set up
   library ). Has <Provider /> component, that wraps ALL our application and,
   throuth context, passes additional functionality ( <React.StrictMode>
   <Provider store={store}> <App /> </Provider> </React.StrictMode>)
+- DEVTOOLS
+- http://extension.remotedev.io/ => docs
+- https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
+  => REDUX DEVTOOLS
+- npm install --save-dev redux-devtools-extension
+- in store.js => import { composeWithDevTools } from 'redux-devtools-extension';
+
 - git add . / commit / push
 
 ---

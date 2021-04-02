@@ -162,7 +162,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Controls from './Controls';
 import Value from './Value';
-import * as actions from '../../redux/counter/counter-actions';
+import * as actions from '../../redux/actions';
 import './Counter.css';
 
 function Counter({ value, step, onIncrement, onDecrement }) {
@@ -171,8 +171,8 @@ function Counter({ value, step, onIncrement, onDecrement }) {
       <Value value={value} />
       <Controls
         step={step}
-        onIncrement={() => onIncrement(step)}
-        onDecrement={() => onDecrement(step)}
+        onIncrement={onIncrement}
+        onDecrement={onDecrement}
       />
     </div>
   );
@@ -188,25 +188,21 @@ function Counter({ value, step, onIncrement, onDecrement }) {
 
 /* ------------ */
 
-/* const mapStateToProps = state => {
+const mapStateToProps = state => {
   return {
     value: state.counter.value,
     step: state.counter.step,
   };
-}; */
-
-/* ---------------- */
-const mapStateToProps = state => ({
-  value: state.counter.value,
-  step: state.counter.step,
-});
+};
 
 //mapDispatchToProps => sends action
 //second argument in connect()
-const mapDispatchToProps = dispatch => ({
-  onIncrement: value => dispatch(actions.increment(value)),
-  onDecrement: value => dispatch(actions.decrement(value)),
-});
+const mapDispatchToProps = dispatch => {
+  return {
+    onIncrement: () => dispatch(actions.increment(5)),
+    onDecrement: () => dispatch(actions.decrement(5)),
+  };
+};
 
 //connect => method, that connects React Component with REDUX
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
